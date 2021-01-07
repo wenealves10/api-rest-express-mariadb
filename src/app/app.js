@@ -4,14 +4,24 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 // routes api
-import homeControllers from '../routes/home.routes';
+import homeRoutes from '../routes/home.routes';
 
-const app = express();
+class App {
+  constructor() {
+    this.app = express();
+    this.middlewares();
+    this.routes();
+  }
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+  middlewares() {
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(cors());
+  }
 
-app.use(homeControllers);
+  routes() {
+    this.app.use(homeRoutes);
+  }
+}
 
-export default app;
+export default new App().app;
