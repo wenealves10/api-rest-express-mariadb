@@ -3,6 +3,6 @@ import homeControllers from '../controllers/HomeControllers';
 
 const routes = new Router();
 
-routes.get('/', homeControllers);
+routes.get('/', homeControllers.index);
 
 export default routes;
