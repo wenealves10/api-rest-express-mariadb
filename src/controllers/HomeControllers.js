@@ -1,4 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-export default (req, res) => {
-  res.send('Ok');
-};
+class HomeControllers {
+  index(req, res) {
+    res.status(200).json({
+      status: 'ok',
+    });
+  }
+}
+
+export default new HomeControllers();
