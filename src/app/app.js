@@ -3,6 +3,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+// databases
+import '../database';
+
 // routes api
 import homeRoutes from '../routes/home.routes';
 
