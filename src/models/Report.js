@@ -28,7 +28,7 @@ export default class Report extends Model {
             msg: 'Only grades less than or equal to 10.',
           },
           min: {
-            args: 0,
+            args: -1,
             msg: 'Only grades equal to or greater than 0',
           },
         },
@@ -45,7 +45,7 @@ export default class Report extends Model {
             msg: 'Only grades less than or equal to 10.',
           },
           min: {
-            args: 0,
+            args: -1,
             msg: 'Only grades equal to or greater than 0',
           },
         },
@@ -62,7 +62,7 @@ export default class Report extends Model {
             msg: 'Only grades less than or equal to 10.',
           },
           min: {
-            args: 0,
+            args: -1,
             msg: 'Only grades equal to or greater than 0',
           },
         },
@@ -79,7 +79,7 @@ export default class Report extends Model {
             msg: 'Only grades less than or equal to 10.',
           },
           min: {
-            args: 0,
+            args: -1,
             msg: 'Only grades equal to or greater than 0',
           },
         },
@@ -96,7 +96,7 @@ export default class Report extends Model {
             msg: 'Only grades less than or equal to 10.',
           },
           min: {
-            args: 0,
+            args: -1,
             msg: 'Only grades equal to or greater than 0',
           },
         },
