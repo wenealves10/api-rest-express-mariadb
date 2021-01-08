@@ -10,6 +10,7 @@ import '../database';
 import homeRoutes from '../routes/home.routes';
 import userRoutes from '../routes/user.routes';
 import studentRoutes from '../routes/student.routes';
+import reportRoutes from '../routes/report.routes';
 
 class App {
   constructor() {
@@ -28,6 +29,7 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/users/', userRoutes);
     this.app.use('/student/', studentRoutes);
+    this.app.use('/report/', reportRoutes);
   }
 }
 
