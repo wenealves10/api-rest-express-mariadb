@@ -9,6 +9,7 @@ import '../database';
 // routes api
 import homeRoutes from '../routes/home.routes';
 import userRoutes from '../routes/user.routes';
+import studentRoutes from '../routes/student.routes';
 
 class App {
   constructor() {
@@ -26,6 +27,7 @@ class App {
   routes() {
     this.app.use('/', homeRoutes);
     this.app.use('/users/', userRoutes);
+    this.app.use('/student/', studentRoutes);
   }
 }
 
