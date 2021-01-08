@@ -43,7 +43,7 @@ export default class Student extends Model {
       },
       age: {
         type: Sequelize.INTEGER,
-        defaultValue: 0,
+        defaultValue: '',
         validate: {
           isNumeric: {
             msg: 'whole numbers only.',
@@ -63,7 +63,7 @@ export default class Student extends Model {
       },
       height: {
         type: Sequelize.FLOAT,
-        defaultValue: 0,
+        defaultValue: '',
         validate: {
           isNumeric: {
             msg: 'whole numbers only.',
@@ -80,7 +80,7 @@ export default class Student extends Model {
       },
       weight: {
         type: Sequelize.FLOAT,
-        defaultValue: 0,
+        defaultValue: '',
         validate: {
           isNumeric: {
             msg: 'whole numbers only.',
