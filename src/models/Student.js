@@ -11,6 +11,9 @@ export default class Student extends Model {
             args: [4, 16],
             msg: 'the name must be between 4 and 16 characters.',
           },
+          isAlpha: {
+            msg: 'Only letters',
+          },
         },
       },
       surname: {
@@ -20,6 +23,9 @@ export default class Student extends Model {
           len: {
             args: [4, 255],
             msg: 'the surname must be between 4 and 255 characters.',
+          },
+          isAlpha: {
+            msg: 'Only letters',
           },
         },
       },
@@ -35,9 +41,60 @@ export default class Student extends Model {
           },
         },
       },
-      age: Sequelize.STRING,
-      height: Sequelize.STRING,
-      weight: Sequelize.STRING,
+      age: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+        validate: {
+          isNumeric: {
+            msg: 'whole numbers only.',
+          },
+          isInt: {
+            msg: 'whole numbers only.',
+          },
+          max: {
+            args: 101,
+            msg: 'Only numbers less than 100',
+          },
+          min: {
+            args: 10,
+            msg: 'Only numbers greater than 10.',
+          },
+        },
+      },
+      height: {
+        type: Sequelize.FLOAT,
+        defaultValue: 0,
+        validate: {
+          isNumeric: {
+            msg: 'whole numbers only.',
+          },
+          max: {
+            args: 2.0,
+            msg: 'Maximum height is 2 meters.',
+          },
+          min: {
+            args: 0.80,
+            msg: 'The minimum height is 80 cm meters',
+          },
+        },
+      },
+      weight: {
+        type: Sequelize.FLOAT,
+        defaultValue: 0,
+        validate: {
+          isNumeric: {
+            msg: 'whole numbers only.',
+          },
+          max: {
+            args: 300,
+            msg: 'Maximum weight is 300 kilos.',
+          },
+          min: {
+            args: 25,
+            msg: 'The minimum weight is 25 kilos',
+          },
+        },
+      },
     }, {
       sequelize,
     });
