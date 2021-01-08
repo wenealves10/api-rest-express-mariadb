@@ -11,9 +11,6 @@ export default class Student extends Model {
             args: [4, 16],
             msg: 'the name must be between 4 and 16 characters.',
           },
-          isAlpha: {
-            msg: 'Only letters',
-          },
         },
       },
       surname: {
@@ -23,9 +20,6 @@ export default class Student extends Model {
           len: {
             args: [4, 255],
             msg: 'the surname must be between 4 and 255 characters.',
-          },
-          isAlpha: {
-            msg: 'Only letters',
           },
         },
       },
