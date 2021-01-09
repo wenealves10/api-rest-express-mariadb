@@ -11,6 +11,8 @@ import homeRoutes from '../routes/home.routes';
 import userRoutes from '../routes/user.routes';
 import studentRoutes from '../routes/student.routes';
 import reportRoutes from '../routes/report.routes';
+import tokenRoutes from '../routes/token.routes';
+import recoverPasswordRoutes from '../routes/recover.password.routes';
 
 class App {
   constructor() {
@@ -30,6 +32,8 @@ class App {
     this.app.use('/users/', userRoutes);
     this.app.use('/student/', studentRoutes);
     this.app.use('/report/', reportRoutes);
+    this.app.use('/auth/token/', tokenRoutes);
+    this.app.use('/auth/forget_password', recoverPasswordRoutes);
   }
 }
 
