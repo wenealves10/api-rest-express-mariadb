@@ -5,7 +5,8 @@ class UserControllers {
   async create(req, res) {
     try {
       const user = await User.create(req.body);
-      return res.status(200).json({ user });
+      const { id, email, name } = user;
+      return res.status(200).json({ user: { id, email, name } });
     } catch (e) {
       return res.status(400).json({ error: e.errors.map((err) => err.message) });
     }
