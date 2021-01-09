@@ -5,9 +5,9 @@ import authentication from '../middlewares/Authentication';
 const routes = new Router();
 
 routes.get('/', authentication, UserControllers.index);
-routes.get('/:id', authentication, UserControllers.show);
+routes.get('/user', authentication, UserControllers.show);
 routes.post('/', authentication, UserControllers.create);
-routes.put('/:id', authentication, UserControllers.update);
-routes.delete('/:id', authentication, UserControllers.delete);
+routes.put('/', authentication, UserControllers.update);
+routes.delete('/', authentication, UserControllers.delete);
 
 export default routes;
