@@ -20,5 +20,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
     'no-restricted-globals': 'off',
+    'no-unused-vars': 'off',
   },
 };
