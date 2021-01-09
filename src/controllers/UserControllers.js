@@ -14,7 +14,7 @@ class UserControllers {
   // Index
   async index(req, res) {
     try {
-      const users = await User.findAll({ attributes: ['id', 'name'] });
+      const users = await User.findAll({ attributes: ['name'] });
       return res.status(200).json({ users });
     } catch (e) {
       return res.status(501).json({ error: ['error loading data'] });
@@ -24,15 +24,12 @@ class UserControllers {
   // Show
   async show(req, res) {
     try {
-      if (!isNaN(req.params.id)) {
-        const user = await User.findByPk(req.params.id);
-        if (!user) {
-          return res.status(404).json({ error: ['User not found'] });
-        }
-        const { id, name } = user;
-        return res.status(200).json({ user: { id, name } });
+      const user = await User.findByPk(req.idUser);
+      if (!user) {
+        return res.status(404).json({ error: ['User not found'] });
       }
-      return res.status(400).json({ error: ['invalid id'] });
+      const { id, name, email } = user;
+      return res.status(200).json({ user: { id, name, email } });
     } catch (e) {
       return res.status(501).json({ error: ['Error loading data'] });
     }
@@ -41,15 +38,12 @@ class UserControllers {
   // Update
   async update(req, res) {
     try {
-      if (!isNaN(req.params.id)) {
-        const user = await User.findByPk(req.params.id);
-        if (!user) {
-          return res.status(404).json({ error: ['User not found'] });
-        }
-        const userUpdate = await user.update(req.body);
-        return res.status(200).json({ userUpdate });
+      const user = await User.findByPk(req.idUser);
+      if (!user) {
+        return res.status(404).json({ error: ['User not found'] });
       }
-      return res.status(400).json({ error: ['invalid id'] });
+      const userUpdate = await user.update(req.body);
+      return res.status(200).json({ status: ['updated user'] });
     } catch (e) {
       return res.status(400).json({ error: e.errors.map((err) => err.message) });
     }
@@ -58,15 +52,12 @@ class UserControllers {
   // Delete
   async delete(req, res) {
     try {
-      if (!isNaN(req.params.id)) {
-        const user = await User.findByPk(req.params.id);
-        if (!user) {
-          return res.status(404).json({ error: ['User not found'] });
-        }
-        const userDeleted = await user.destroy();
-        return res.status(200).json({ userDeleted });
+      const user = await User.findByPk(req.idUser);
+      if (!user) {
+        return res.status(404).json({ error: ['User not found'] });
       }
-      return res.status(400).json({ error: ['invalid id'] });
+      const userDeleted = await user.destroy();
+      return res.status(200).json({ status: ['deleted user'] });
     } catch (e) {
       return res.status(500).json({ error: ['Error loading data'] });
     }
