@@ -14,7 +14,7 @@ class UserControllers {
   // Index
   async index(req, res) {
     try {
-      const users = await User.findAll({ attributes: ['name'] });
+      const users = await User.findAll({ attributes: ['id', 'name', 'email'] });
       return res.status(200).json({ users });
     } catch (e) {
       return res.status(501).json({ error: ['error loading data'] });
