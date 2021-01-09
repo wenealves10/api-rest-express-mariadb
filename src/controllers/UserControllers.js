@@ -31,7 +31,7 @@ class UserControllers {
         }
         return res.status(200).json({ user });
       }
-      return res.status(401).json({ error: ['invalid id'] });
+      return res.status(400).json({ error: ['invalid id'] });
     } catch (e) {
       return res.status(501).json({ error: ['Error loading data'] });
     }
@@ -48,7 +48,7 @@ class UserControllers {
         const userUpdate = await user.update(req.body);
         return res.status(200).json({ userUpdate });
       }
-      return res.status(401).json({ error: ['invalid id'] });
+      return res.status(400).json({ error: ['invalid id'] });
     } catch (e) {
       return res.status(400).json({ error: e.errors.map((err) => err.message) });
     }
@@ -65,7 +65,7 @@ class UserControllers {
         const userDeleted = await user.destroy();
         return res.status(200).json({ userDeleted });
       }
-      return res.status(401).json({ error: ['invalid id'] });
+      return res.status(400).json({ error: ['invalid id'] });
     } catch (e) {
       return res.status(500).json({ error: ['Error loading data'] });
     }
