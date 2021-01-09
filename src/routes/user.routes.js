@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import UserControllers from '../controllers/UserControllers';
+import authentication from '../middlewares/Authentication';
 
 const routes = new Router();
 
-routes.get('/', UserControllers.index);
-routes.get('/:id', UserControllers.show);
-routes.post('/', UserControllers.create);
-routes.put('/:id', UserControllers.update);
-routes.delete('/:id', UserControllers.delete);
+routes.get('/', authentication, UserControllers.index);
+routes.get('/:id', authentication, UserControllers.show);
+routes.post('/', authentication, UserControllers.create);
+routes.put('/:id', authentication, UserControllers.update);
+routes.delete('/:id', authentication, UserControllers.delete);
 
 export default routes;
