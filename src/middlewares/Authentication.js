@@ -24,7 +24,7 @@ class Authentication {
       }
       return res.status(401).json({ error: ['No Token'] });
     } catch (e) {
-      return res.status(404).json({ error: ['Not found User or Badly formatted token'] });
+      return res.status(501).json({ error: ['Unexpected error'] });
     }
   }
 }
