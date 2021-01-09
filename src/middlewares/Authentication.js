@@ -6,9 +6,9 @@ class Authentication {
   async auth(req, res, next) {
     const authToken = req.headers.authorization;
     if (authToken != undefined) {
-      const bearer = authToken.split(' ');
-      if (bearer[1] != 'undefined') {
-        await jwt.verify(bearer[1], process.env.SECRET, (err, data) => {
+      const [, token] = authToken.split(' ');
+      if (token != 'undefined') {
+        await jwt.verify(token, process.env.SECRET, (err, data) => {
           if (!err) {
             req.idUser = data.id;
             req.emailUser = data.email;
