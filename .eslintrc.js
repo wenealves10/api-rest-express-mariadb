@@ -21,5 +21,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-restricted-globals': 'off',
     'no-unused-vars': 'off',
+    'consistent-return': 'off',
   },
 };
