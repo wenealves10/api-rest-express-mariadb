@@ -40,6 +40,14 @@ export default class User extends Model {
           },
         },
       },
+      password_reset_token: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+      },
+      password_reset_expires: {
+        type: Sequelize.DATE,
+        defaultValue: null,
+      },
 
     }, {
       sequelize,
