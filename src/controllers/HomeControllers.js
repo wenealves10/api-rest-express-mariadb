@@ -8,13 +8,13 @@ class HomeControllers {
   async index(req, res) {
     try {
       if (!validate.isEmail(req.body.email)) {
-        return res.status(401).json({ error: ['Invalid email'] });
+        return res.status(400).json({ error: ['Invalid email'] });
       }
       if (validate.isEmpty(req.body.password)) {
-        return res.status(401).json({ error: ['empty field'] });
+        return res.status(400).json({ error: ['empty field'] });
       }
       if (req.body.password.length < 6 || req.body.password.length > 50) {
-        return res.status(401).json({ error: ['Password must be between 6 and 50 characters.'] });
+        return res.status(400).json({ error: ['Password must be between 6 and 50 characters.'] });
       }
       const user = await User.findOne({ where: { email: req.body.email } });
       if (!user) {
@@ -22,7 +22,7 @@ class HomeControllers {
       }
       const password = await bcrypt.compare(req.body.password, user.password_hash);
       if (!password) {
-        return res.status(401).json({ error: ['incorrect password'] });
+        return res.status(400).json({ error: ['incorrect password'] });
       }
       await jwt.sign({
         id: user.id,
