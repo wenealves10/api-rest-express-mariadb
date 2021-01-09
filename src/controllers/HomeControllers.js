@@ -24,17 +24,13 @@ class HomeControllers {
       if (!password) {
         return res.status(400).json({ error: ['incorrect password'] });
       }
-      await jwt.sign({
+      const token = await jwt.sign({
         id: user.id,
         email: user.email,
       }, process.env.SECRET, {
         expiresIn: '48h',
-      }, (err, token) => {
-        if (err) {
-          return res.status(501).json({ error: ['Token generation error'] });
-        }
-        return res.status(200).json({ token });
       });
+      return res.status(200).json({ token });
     } catch (e) {
       return res.status(501).json({ error: ['Error Logging In'] });
     }
