@@ -12,12 +12,12 @@ class Authentication {
         if (token != 'undefined') {
           const data = jwt.verify(token, process.env.SECRET);
           const { id, email } = data;
-          req.idUser = id;
-          req.emailUser = email;
           const user = await User.findOne({ where: { email } });
           if (!user) {
             return res.status(401).json({ error: ['Not found User'] });
           }
+          req.idUser = id;
+          req.emailUser = email;
           return next();
         }
         return res.status(401).json({ error: ['No Token'] });
