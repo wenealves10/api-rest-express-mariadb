@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import User from '../models/User';
 
 class HomeControllers {
-  async create(req, res) {
+  async login(req, res) {
     try {
       if (!validate.isEmail(req.body.email)) {
         return res.status(400).json({ error: ['Invalid email'] });
