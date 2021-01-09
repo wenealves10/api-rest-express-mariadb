@@ -16,6 +16,14 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      password_reset_token: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      password_reset_expires: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
       password_hash: {
         type: Sequelize.STRING,
         allowNull: false,
