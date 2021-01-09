@@ -8,7 +8,10 @@ class Authentication {
     try {
       const authToken = req.headers.authorization;
       if (authToken != undefined) {
-        const [, token] = authToken.split(' ');
+        const [bearer, token] = authToken.split(' ');
+        if (!/^Bearer$/i.test(bearer)) {
+          return res.status(401).json({ error: ['Unexpected error token'] });
+        }
         if (token != 'undefined') {
           const data = jwt.verify(token, process.env.SECRET);
           const { id, email } = data;
