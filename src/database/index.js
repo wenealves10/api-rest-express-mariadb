@@ -9,3 +9,5 @@ const models = [Student, Report, User];
 const connection = new Sequelize(databaseConfig);
 
 models.forEach((model) => model.init(connection));
+Student.associate(connection.models);
+Report.associate(connection.models);
