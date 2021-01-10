@@ -14,10 +14,9 @@ class RecoverPasswordControllers {
       const token = crypto.randomBytes(20).toString('hex');
       const now = new Date();
       now.setHours(now.getHours() + 1);
-      await user.update({
-        password_reset_token: token,
-        password_reset_expires: now,
-      });
+      user.password_reset_token = token;
+      user.password_reset_expires = now;
+      await user.save({ fields: ['password_reset_token', 'password_reset_expires'] });
       mailer.sendMail({
         to: email,
         from: 'wene.alves@acad.ifma.edu.br',
@@ -42,7 +41,10 @@ class RecoverPasswordControllers {
       if (user.password_reset_token !== token) return res.status(400).json({ error: ['Token invalid'] });
       const now = new Date();
       if (now > user.password_reset_expires) return res.status(400).json({ error: ['Token expired'] });
-      await user.update({ password });
+      user.password = password;
+      user.password_reset_token = null;
+      user.password_reset_expires = null;
+      await user.save();
       return res.status(200).json({ status: ['Recovered account'] });
     } catch (e) {
       return res.status(501).json({ error: ['Internal error'] });
