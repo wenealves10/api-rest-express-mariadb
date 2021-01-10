@@ -17,7 +17,7 @@ class Authentication {
           const { id, email } = data;
           const user = await User.findOne({ where: { email } });
           if (!user) {
-            return res.status(401).json({ error: ['Not found User'] });
+            return res.status(401).json({ error: ['User not found token'] });
           }
           req.idUser = id;
           req.emailUser = email;
