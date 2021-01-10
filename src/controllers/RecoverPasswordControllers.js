@@ -1,4 +1,5 @@
 /* eslint-disable eqeqeq */
+import 'dotenv/config';
 import validate from 'validator';
 import crypto from 'crypto';
 import User from '../models/User';
@@ -19,7 +20,7 @@ class RecoverPasswordControllers {
       await user.save({ fields: ['password_reset_token', 'password_reset_expires'] });
       mailer.sendMail({
         to: email,
-        from: 'wene.alves@acad.ifma.edu.br',
+        from: process.env.EMAIL_SEND,
         html: `<p> Did you forget your password? No problem, use this code here to get them back: <b>${token}</b></p>`,
       }, (err) => {
         if (err) return res.status(400).json({ error: ['Error sending email', err] });
