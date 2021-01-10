@@ -27,7 +27,7 @@ class Authentication {
       }
       return res.status(401).json({ error: ['No Token'] });
     } catch (e) {
-      return res.status(501).json({ error: ['Unexpected error'] });
+      return res.status(401).json({ error: ['Unexpected error Token'] });
     }
   }
 }
