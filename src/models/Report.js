@@ -16,6 +16,18 @@ export default class Report extends Model {
           },
         },
       },
+      student_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: '',
+        validate: {
+          isNumeric: {
+            msg: 'Student whole numbers only.',
+          },
+          isInt: {
+            msg: 'Student whole numbers only.',
+          },
+        },
+      },
       note_1: {
         type: Sequelize.FLOAT,
         defaultValue: 0,
@@ -104,6 +116,18 @@ export default class Report extends Model {
     }, {
       sequelize,
     });
+    this.addHook('beforeSave', async (report) => {
+      if (report.note_1 || report.note_2 || report.note_3 || report.note_4) {
+        const {
+          note_1: note1, note_2: note2, note_3: note3, note_4: note4,
+        } = report;
+        report.average = (note1 + note2 + note3 + note4) / 4;
+      }
+    });
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'student_id', as: 'student' });
   }
 }
