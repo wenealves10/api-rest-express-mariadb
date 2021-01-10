@@ -26,14 +26,14 @@ class StudentControllers {
   async show(req, res) {
     try {
       if (isNaN(req.params.id)) return res.status(400).json({ error: ['ID invalid'] });
-      const student = await Student.findByPk(req.params.id);
+      const student = await Student.findByPk(req.params.id, { include: { association: 'reports' } });
       if (!student) return res.status(404).json({ error: ['Student not found'] });
       const {
-        id, name, surname, email, age, height, weight,
+        id, name, surname, email, age, height, weight, reports,
       } = student;
       return res.status(200).json({
         student: {
-          id, name, surname, email, age, height, weight,
+          id, name, surname, email, age, height, weight, reports,
         },
       });
     } catch (e) {
