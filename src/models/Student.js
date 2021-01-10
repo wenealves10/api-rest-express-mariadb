@@ -94,4 +94,8 @@ export default class Student extends Model {
     });
     return this;
   }
+
+  static associate(models) {
+    this.hasMany(models.Report, { foreignKey: 'student_id', as: 'reports' });
+  }
 }
