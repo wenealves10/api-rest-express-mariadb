@@ -4,6 +4,9 @@ import authentication from '../middlewares/Authentication';
 
 const routes = new Router();
 
-routes.post('/', authentication, ReportControllers.create);
+routes.use(authentication);
+routes.get('/', ReportControllers.index);
+routes.get('/student/:id', ReportControllers.show);
+routes.post('/', ReportControllers.create);
 
 export default routes;
