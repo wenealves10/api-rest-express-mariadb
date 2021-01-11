@@ -1,4 +1,3 @@
-import validate from 'validator';
 import Student from '../models/Student';
 
 // eslint-disable-next-line no-unused-vars
