@@ -7,6 +7,6 @@ const routes = new Router();
 routes.use(authentication);
 routes.get('/', ReportControllers.index);
 routes.get('/student/:id', ReportControllers.show);
-routes.post('/', ReportControllers.create);
+routes.post('/student/:id', ReportControllers.create);
 
 export default routes;
