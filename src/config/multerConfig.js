@@ -3,7 +3,7 @@ import { extname, resolve } from 'path';
 import crypto from 'crypto';
 
 export default {
-  desk: resolve(__dirname, '..', '..', 'uploads'),
+  desk: resolve(__dirname, '..', '..', 'uploads', 'images'),
   storage: multer.diskStorage({
     filename: (req, file, cb) => {
       crypto.randomBytes(16, (err, hash) => {
@@ -13,7 +13,7 @@ export default {
       });
     },
     destination: (req, file, cb) => {
-      cb(null, resolve(__dirname, '..', '..', 'uploads'));
+      cb(null, resolve(__dirname, '..', '..', 'uploads', 'images'));
     },
   }),
   limits: {
