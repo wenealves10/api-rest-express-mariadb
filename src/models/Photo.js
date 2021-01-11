@@ -1,4 +1,7 @@
 import Sequelize, { Model } from 'sequelize';
+import fs from 'fs';
+import { resolve } from 'path';
+import { promisify } from 'util';
 
 export default class Photo extends Model {
   static init(sequelize) {
@@ -9,6 +12,7 @@ export default class Photo extends Model {
       sequelize,
       tableName: 'photos',
     });
+    this.addHook('beforeDestroy', async (photo) => promisify(fs.unlink)(resolve(__dirname, '..', '..', 'uploads', photo.filename)));
     return this;
   }
 
