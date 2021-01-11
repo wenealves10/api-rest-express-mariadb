@@ -23,7 +23,7 @@ class PhotoControllers {
       }
       const id_student = req.params.id;
       const photo = await Photo.create({ originalname, filename, id_student });
-      return res.status(200).json({ status: req.file });
+      return res.status(200).json({ status: photo });
     } catch (e) {
       deletedPhoto(filename);
       return res.status(400).json({ error: ['Error upload Photograph'] });
