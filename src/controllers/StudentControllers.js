@@ -37,7 +37,7 @@ class StudentControllers {
         },
       });
     } catch (e) {
-      return res.status(501).json({ error: ['error loading data'] });
+      return res.status(400).json({ error: ['error loading data'] });
     }
   }
 
@@ -61,7 +61,7 @@ class StudentControllers {
       await student.destroy();
       return res.status(200).json({ status: ['Deleted Data'] });
     } catch (e) {
-      return res.status(501).json({ error: ['error loading data'] });
+      return res.status(400).json({ error: ['error loading data'] });
     }
   }
 }
