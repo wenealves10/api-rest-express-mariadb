@@ -12,14 +12,14 @@ export default class Photo extends Model {
       url: {
         type: Sequelize.VIRTUAL,
         get() {
-          return `${process.env.URL_PHOTOGRAPH}/${this.getDataValue('filename')}`;
+          return `${process.env.URL_PHOTOGRAPH}/images/${this.getDataValue('filename')}`;
         },
       },
     }, {
       sequelize,
       tableName: 'photos',
     });
-    this.addHook('beforeDestroy', async (photo) => promisify(fs.unlink)(resolve(__dirname, '..', '..', 'uploads', photo.filename)));
+    this.addHook('beforeDestroy', async (photo) => promisify(fs.unlink)(resolve(__dirname, '..', '..', 'uploads', 'images', photo.filename)));
     return this;
   }
 
