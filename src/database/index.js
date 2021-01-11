@@ -10,6 +10,4 @@ const models = [Student, Report, User, Photo];
 const connection = new Sequelize(databaseConfig);
 
 models.forEach((model) => model.init(connection));
-Student.associate(connection.models);
-Report.associate(connection.models);
-Photo.associate(connection.models);
+models.forEach((model) => model.associate && model.associate(connection.models));
