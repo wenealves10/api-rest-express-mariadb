@@ -8,6 +8,6 @@ import HandlingError from '../middlewares/HandlingError';
 const routes = new Router();
 
 routes.use(authentication);
-routes.post('/', multer(multerConfig).single('photo'), HandlingError, PhotoControllers.store);
+routes.post('/:id', multer(multerConfig).single('photo'), HandlingError, PhotoControllers.store);
 
 export default routes;
