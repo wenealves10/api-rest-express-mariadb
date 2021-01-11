@@ -1,6 +1,11 @@
+import fs from 'fs';
+import { resolve } from 'path';
+import { promisify } from 'util';
 import Student from '../models/Student';
-
 // eslint-disable-next-line no-unused-vars
+function deletedPhoto(filename) {
+  return promisify(fs.unlink)(resolve(__dirname, '..', '..', 'uploads', filename));
+}
 class StudentControllers {
   async create(req, res) {
     try {
@@ -60,8 +65,9 @@ class StudentControllers {
   async delete(req, res) {
     try {
       if (isNaN(req.params.id)) return res.status(400).json({ error: ['ID invalid'] });
-      const student = await Student.findByPk(req.params.id);
+      const student = await Student.findByPk(req.params.id, { include: { association: 'profiles' } });
       if (!student) return res.status(404).json({ error: ['Student not found'] });
+      deletedPhoto(student.profiles.filename);
       await student.destroy();
       return res.status(200).json({ status: ['Deleted Data'] });
     } catch (e) {
