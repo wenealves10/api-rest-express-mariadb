@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
-import validate from 'validator';
 import Report from '../models/Report';
 import Student from '../models/Student';
 
 class ReportControllers {
   async create(req, res) {
     try {
-      if (isNaN(req.body.student_id)) return res.status(400).json({ error: ['ID invalid'] });
-      const student = await Student.findByPk(req.body.student_id);
+      if (isNaN(req.params.id)) return res.status(400).json({ error: ['ID invalid'] });
+      const student = await Student.findByPk(req.params.id);
       if (!student) return res.status(404).json({ error: ['Student not found'] });
+      req.body.student_id = req.params.id;
       const report = await Report.create(req.body);
       res.status(200).json({ report });
     } catch (e) {
