@@ -16,18 +16,6 @@ export default class Report extends Model {
           },
         },
       },
-      student_id: {
-        type: Sequelize.INTEGER,
-        defaultValue: '',
-        validate: {
-          isNumeric: {
-            msg: 'Student whole numbers only.',
-          },
-          isInt: {
-            msg: 'Student whole numbers only.',
-          },
-        },
-      },
       note_1: {
         type: Sequelize.FLOAT,
         defaultValue: 0,
