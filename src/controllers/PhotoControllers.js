@@ -6,7 +6,7 @@ import Photo from '../models/Photo';
 import Student from '../models/Student';
 
 function deletedPhoto(filename) {
-  return promisify(fs.unlink)(resolve(__dirname, '..', '..', 'uploads', filename));
+  return promisify(fs.unlink)(resolve(__dirname, '..', '..', 'uploads', 'images', filename));
 }
 class PhotoControllers {
   async store(req, res) {
