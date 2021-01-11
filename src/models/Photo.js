@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import Sequelize, { Model } from 'sequelize';
 import fs from 'fs';
 import { resolve } from 'path';
@@ -8,6 +9,12 @@ export default class Photo extends Model {
     super.init({
       originalname: { type: Sequelize.STRING },
       filename: { type: Sequelize.STRING },
+      url: {
+        type: Sequelize.VIRTUAL,
+        get() {
+          return `${process.env.URL_PHOTOGRAPH}/${this.getDataValue('filename')}`;
+        },
+      },
     }, {
       sequelize,
       tableName: 'photos',
