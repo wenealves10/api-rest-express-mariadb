@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  api-school:
+    image: wns1601/api-school:1.0
+    container_name: school-api
+    volumes:
+      - ./.env:/opt/app/.env
+    ports:
+      - 3000:3000
+    restart: always
