@@ -17,6 +17,22 @@ import tokenRoutes from '../routes/token.routes';
 import recoverPasswordRoutes from '../routes/recover.password.routes';
 import photoRoutes from '../routes/photo.routes';
 
+// Cors Options
+const whiteList = [
+  process.env.URL_EXT,
+  process.env.URL_INT,
+];
+
+const corsOptions = {
+  origin(origin, callback) {
+    if (whiteList.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not Allowed By Cors'));
+    }
+  },
+};
+
 class App {
   constructor() {
     this.app = express();
@@ -27,7 +43,7 @@ class App {
   middlewares() {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
-    this.app.use(cors());
+    this.app.use(cors(corsOptions));
     this.app.use(helmet());
     this.app.use(express.static(resolve(__dirname, '..', '..', 'uploads')));
   }
