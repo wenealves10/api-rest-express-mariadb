@@ -30,7 +30,12 @@ class TokenControllers {
       }, process.env.SECRET, {
         expiresIn: '48h',
       });
-      return res.status(200).json({ token });
+      return res.status(200).json({
+        user:
+         {
+           id: user.id, name: user.name, email: user.email, token,
+         },
+      });
     } catch (e) {
       return res.status(501).json({ error: ['Error Logging In'] });
     }
