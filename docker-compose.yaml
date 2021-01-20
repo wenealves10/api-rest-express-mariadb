@@ -1,8 +1,8 @@
-version: '3'
+version: "3"
 
 services:
   api-school:
-    image: wns1601/api-school:1.0
+    image: wns1601/api-school:2.0
     container_name: school-api
     volumes:
       - ./.env:/opt/app/.env
