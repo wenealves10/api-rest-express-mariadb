@@ -20,8 +20,9 @@ class RecoverPasswordControllers {
       await user.save({ fields: ['password_reset_token', 'password_reset_expires'] });
       mailer.sendMail({
         to: email,
+        subject: 'WeneDev School',
         from: process.env.EMAIL_SEND,
-        html: `<p> Did you forget your password? No problem, use this code here to get them back: <b>${token}</b></p>`,
+        html: `<p> Você esqueceu sua senha? Sem problemas, use este código aqui para recuperá-los: <b>${token}</b></p>`,
       }, (err) => {
         if (err) return res.status(400).json({ error: ['Error sending email', err] });
         return res.status(200).json({ status: ['Code sent in email'] });
